@@ -29,13 +29,22 @@ body {
 
 #image {
     display: block;
-    max-width: 100%;
-    max-height: 400px;
-    height: auto;
+    width: 250px;
+    height: 250px;
     margin: 0 auto;
-    border-radius: 4px;
-    object-fit: contain;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 90%;
     border: 2px solid #e63946;
+    box-shadow:
+        0 0 20px rgba(255, 69, 0, 0.8),     /* inner reddish glow */
+        0 0 40px rgba(255, 140, 0, 0.6),    /* middle orange glow */
+        0 0 60px rgba(255, 215, 0, 0.4);    /* outer yellow glow */
+
+  transition: object-position 0.3s ease, box-shadow 0.3s ease;
+
+  /* Animation for the "breathing" flame effect */
+  animation: pulseFlame 2s infinite ease-in-out; /* Pulse every 2 seconds */
 }
 
 #img-caption {
@@ -113,3 +122,24 @@ blockquote + p {
     transform: scale(1.05);  
 }
 
+/* Keyframes to animate the glow */
+@keyframes pulseFlame {
+  0% {
+    box-shadow:
+      0 0 20px rgba(255, 69, 0, 0.8),
+      0 0 40px rgba(255, 140, 0, 0.6),
+      0 0 60px rgba(255, 215, 0, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(255, 69, 0, 1),    /* Slightly more intense red glow */
+      0 0 60px rgba(255, 140, 0, 0.9),  /* Stronger orange hue */
+      0 0 90px rgba(255, 215, 0, 0.7);  /* More yellow at the edge */
+  }
+  100% {
+    box-shadow:
+      0 0 20px rgba(255, 69, 0, 0.8),
+      0 0 40px rgba(255, 140, 0, 0.6),
+      0 0 60px rgba(255, 215, 0, 0.4);
+  }
+}
